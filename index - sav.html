@@ -996,6 +996,131 @@
                 box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
             }
         }		
+
+		/* ===== QUIZ & SONDAGE ===== */
+		.quiz-container {
+			background: #f8fafc;
+			border: 1px solid #e2e8f0;
+			border-radius: 12px;
+			padding: 1.5rem;
+			margin: 1.5rem 0;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+		}
+
+		.quiz-question {
+			font-weight: 700;
+			font-size: 1.1rem;
+			color: #1e3a5f;
+			margin-bottom: 1rem;
+			line-height: 1.4;
+		}
+
+		/* Image éventuelle dans le quiz */
+		.quiz-container img {
+			max-width: 100%;
+			border-radius: 8px;
+			margin-bottom: 1rem;
+			display: block;
+		}
+
+		.quiz-options {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.quiz-btn {
+			padding: 0.8rem 1rem;
+			border: 2px solid #e2e8f0;
+			background: white;
+			border-radius: 8px;
+			cursor: pointer;
+			text-align: left;
+			font-family: 'DM Sans', sans-serif;
+			font-size: 1rem;
+			transition: all 0.2s;
+			color: #333;
+			width: 100%;
+		}
+
+		.quiz-btn:hover:not(:disabled) {
+			background: #f1f5f9;
+			border-color: #cbd5e1;
+		}
+
+		/* États de réponse */
+		.quiz-btn.correct {
+			background-color: #dcfce7 !important; /* Fond Vert */
+			border-color: #22c55e !important;     /* Bordure Verte */
+			color: #15803d !important;            /* Texte Vert Foncé */
+			font-weight: 600;
+		}
+
+		.quiz-btn.wrong {
+			background-color: #fee2e2 !important; /* Fond Rouge */
+			border-color: #ef4444 !important;     /* Bordure Rouge */
+			color: #b91c1c !important;            /* Texte Rouge Foncé */
+			opacity: 1;
+		}
+
+		/* Pour marquer la bonne réponse quand on s'est trompé */
+		.quiz-btn.missed {
+			border-color: #22c55e !important;
+			color: #15803d !important;
+			border-style: dashed;
+		}
+
+		.quiz-explanation {
+			margin-top: 1rem;
+			padding: 1rem;
+			background: #fff;
+			border: 1px solid #e2e8f0;
+			border-radius: 8px;
+			color: #1e3a5f;
+			font-size: 0.95rem;
+			line-height: 1.5;
+			animation: fadeIn 0.3s ease;
+		}
+
+		.quiz-explanation.hidden {
+			display: none;
+		}
+
+		/* Styles pour les messages de feedback ajoutés en JS */
+		.quiz-feedback-success {
+			color: #15803d; /* Vert */
+			font-weight: 800;
+			display: block;
+			margin-bottom: 0.5rem;
+		}
+
+		.quiz-feedback-error {
+			color: #b91c1c; /* Rouge */
+			font-weight: 800;
+			display: block;
+			margin-bottom: 0.5rem;
+		}
+
+
+		/* ===== VIDÉO RESPONSIVE (Youtube) ===== */
+		.video-container {
+			position: relative;
+			padding-bottom: 56.25%; /* Ratio 16:9 */
+			height: 0;
+			overflow: hidden;
+			border-radius: 12px;
+			margin: 1.5rem 0;
+			background: #000;
+		}
+		.video-container iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+
 		
     </style>
 </head>
@@ -1226,7 +1351,10 @@
 		let userMarkerRoute = null;
         let userMarkerOverview = null;
 		let routeLayoutMode = 'horizontal'; // 'horizontal' (carte haut/photos bas) ou 'vertical' (carte gauche/photos droite)
-
+		// --- AJOUT : Variables pour mémoriser le décalage des photos ---
+		let mapPhotoOffset = null; // Pour la slide Map
+		let routePhotoOffsets = { from: null, to: null }; // Pour la slide Route
+		
         const CONFIG = { imagesPath: './images/',  audioPath: './audio/'  };
 
         // Palette de couleurs pour les segments
@@ -1399,6 +1527,62 @@
             if (meters < 1000) return Math.round(meters) + ' m';
             return (meters / 1000).toFixed(1) + ' km';
         }
+
+		function initQuiz() {
+			const quizzes = document.querySelectorAll('.quiz-container');
+
+			quizzes.forEach(quiz => {
+				const buttons = quiz.querySelectorAll('.quiz-btn');
+				const explanationEl = quiz.querySelector('.quiz-explanation');
+				
+				// On stocke le texte d'explication original (celui du JSON)
+				// pour ne pas le perdre ou le dupliquer si on cliquait plusieurs fois (bien que disabled)
+				const originalExplanationHtml = explanationEl ? explanationEl.innerHTML : '';
+				
+				let answered = false;
+
+				buttons.forEach(btn => {
+					btn.addEventListener('click', (e) => {
+						if (answered) return; 
+						answered = true;
+
+						const isCorrect = btn.getAttribute('data-correct') === 'true';
+
+						// 1. Gestion visuelle des boutons
+						buttons.forEach(b => {
+							b.disabled = true; // On désactive tout
+							
+							// Si c'est la bonne réponse, on la met en vert (dans tous les cas)
+							if (b.getAttribute('data-correct') === 'true') {
+								b.classList.add('correct');
+							}
+						});
+
+						// Si l'utilisateur s'est trompé, on met son choix en rouge
+						if (!isCorrect) {
+							btn.classList.add('wrong');
+						}
+
+						// 2. Gestion du message d'explication
+						if (explanationEl) {
+							let feedbackHtml = '';
+
+							if (isCorrect) {
+								// Cas Bonne réponse
+								feedbackHtml = `<span class="quiz-feedback-success">Bonne réponse, bravo !</span>`;
+							} else {
+								// Cas Mauvaise réponse
+								feedbackHtml = `<span class="quiz-feedback-error">Mauvaise réponse !</span>`;
+							}
+
+							// On injecte : Message Feedback + Saut de ligne + Explication originale
+							explanationEl.innerHTML = feedbackHtml + originalExplanationHtml;
+							explanationEl.classList.remove('hidden');
+						}
+					});
+				});
+			});
+		}
 
 		function processDescriptionHtml(html) {
 			if (!html) return '<p>Pas de description.</p>';
@@ -1633,160 +1817,178 @@
             return -1;
         }
 
-        function updateMapPhotoPosition() {
-            if (!map || !mapMarkerCoords) return;
-            const photoBox = document.getElementById('map-photo-box');
-            const connectorLine = document.getElementById('map-connector-line');
-            const container = document.getElementById('map-container');
-            if (!photoBox.classList.contains('visible')) {
-                connectorLine.setAttribute('x1', '0'); connectorLine.setAttribute('y1', '0');
-                connectorLine.setAttribute('x2', '0'); connectorLine.setAttribute('y2', '0');
-                return;
-            }
-            const containerRect = container.getBoundingClientRect();
-            const point = map.latLngToContainerPoint([mapMarkerCoords.lat, mapMarkerCoords.lng]);
-            const photoWidth = 120;
-            const photoHeight = photoBox.offsetHeight || 100;
-            const offset = 60;
-            let photoX = point.x < containerRect.width / 2 ? point.x + offset : point.x - offset - photoWidth;
-            let photoY = point.y < containerRect.height / 2 ? point.y + offset : point.y - offset - photoHeight;
-            photoX = Math.max(10, Math.min(containerRect.width - photoWidth - 10, photoX));
-            photoY = Math.max(10, Math.min(containerRect.height - photoHeight - 10, photoY));
-            photoBox.style.left = photoX + 'px';
-            photoBox.style.top = photoY + 'px';
-            connectorLine.setAttribute('x1', point.x);
-            connectorLine.setAttribute('y1', point.y);
-            connectorLine.setAttribute('x2', photoX + photoWidth / 2);
-            connectorLine.setAttribute('y2', photoY + photoHeight / 2);
-        }
+		function updateMapPhotoPosition() {
+			if (!map || !mapMarkerCoords) return;
+			const photoBox = document.getElementById('map-photo-box');
+			const connectorLine = document.getElementById('map-connector-line');
+			const container = document.getElementById('map-container');
+			
+			if (!photoBox.classList.contains('visible')) {
+				connectorLine.setAttribute('x1', '0'); connectorLine.setAttribute('y1', '0');
+				connectorLine.setAttribute('x2', '0'); connectorLine.setAttribute('y2', '0');
+				return;
+			}
+
+			const point = map.latLngToContainerPoint([mapMarkerCoords.lat, mapMarkerCoords.lng]);
+			const photoWidth = 120;
+			const photoHeight = photoBox.offsetHeight || 100;
+
+			// Si on n'a pas encore d'offset (premier affichage), on le calcule
+			if (!mapPhotoOffset) {
+				const containerRect = container.getBoundingClientRect();
+				const offset = 60;
+				let photoX = point.x < containerRect.width / 2 ? point.x + offset : point.x - offset - photoWidth;
+				let photoY = point.y < containerRect.height / 2 ? point.y + offset : point.y - offset - photoHeight;
+				
+				// Garde-fous pour rester dans l'écran
+				photoX = Math.max(10, Math.min(containerRect.width - photoWidth - 10, photoX));
+				photoY = Math.max(10, Math.min(containerRect.height - photoHeight - 10, photoY));
+
+				// On applique la position
+				photoBox.style.left = photoX + 'px';
+				photoBox.style.top = photoY + 'px';
+				
+				// ET ON SAUVEGARDE L'OFFSET IMMÉDIATEMENT
+				mapPhotoOffset = { x: photoX - point.x, y: photoY - point.y };
+			} else {
+				// Si on a déjà un offset (calculé ou suite à un drag), on l'applique
+				// La photo reste ainsi "accrochée" au marqueur
+				photoBox.style.left = (point.x + mapPhotoOffset.x) + 'px';
+				photoBox.style.top = (point.y + mapPhotoOffset.y) + 'px';
+			}
+
+			connectorLine.setAttribute('x1', point.x);
+			connectorLine.setAttribute('y1', point.y);
+			connectorLine.setAttribute('x2', parseFloat(photoBox.style.left) + photoWidth / 2);
+			connectorLine.setAttribute('y2', parseFloat(photoBox.style.top) + photoHeight / 2);
+		}
 
 		function updateRoutePhotosPosition() {
-            if (!routeMap || !routeMarkerFromCoords || !routeMarkerToCoords) return;
-            
-            const container = document.getElementById('route-map-container');
-            const w = container.offsetWidth;
-            const h = container.offsetHeight;
-            
-            const fromBox = document.getElementById('route-photo-from');
-            const toBox = document.getElementById('route-photo-to');
-            const connFrom = document.getElementById('route-connector-from');
-            const connTo = document.getElementById('route-connector-to');
+			if (!routeMap || !routeMarkerFromCoords || !routeMarkerToCoords) return;
+			
+			const container = document.getElementById('route-map-container');
+			const w = container.offsetWidth;
+			const h = container.offsetHeight;
+			
+			const fromBox = document.getElementById('route-photo-from');
+			const toBox = document.getElementById('route-photo-to');
+			const connFrom = document.getElementById('route-connector-from');
+			const connTo = document.getElementById('route-connector-to');
 
-            // 1. Masquer les connecteurs par défaut
-            connFrom.setAttribute('x1', '0'); connFrom.setAttribute('y1', '0'); connFrom.setAttribute('x2', '0'); connFrom.setAttribute('y2', '0');
-            connTo.setAttribute('x1', '0'); connTo.setAttribute('y1', '0'); connTo.setAttribute('x2', '0'); connTo.setAttribute('y2', '0');
+			// Reset connecteurs par sécurité
+			connFrom.setAttribute('x1', '0'); connFrom.setAttribute('y1', '0'); connFrom.setAttribute('x2', '0'); connFrom.setAttribute('y2', '0');
+			connTo.setAttribute('x1', '0'); connTo.setAttribute('y1', '0'); connTo.setAttribute('x2', '0'); connTo.setAttribute('y2', '0');
 
-            // Si aucune photo visible, on arrête
-            const fromVisible = fromBox.classList.contains('visible');
-            const toVisible = toBox.classList.contains('visible');
-            if (!fromVisible && !toVisible) return;
+			const fromVisible = fromBox.classList.contains('visible');
+			const toVisible = toBox.classList.contains('visible');
+			if (!fromVisible && !toVisible) return;
 
-            // 2. Récupérer les positions écran des marqueurs (c'est la clé du tri visuel)
-            const ptFrom = routeMap.latLngToContainerPoint([routeMarkerFromCoords.lat, routeMarkerFromCoords.lng]);
-            const ptTo = routeMap.latLngToContainerPoint([routeMarkerToCoords.lat, routeMarkerToCoords.lng]);
+			const ptFrom = routeMap.latLngToContainerPoint([routeMarkerFromCoords.lat, routeMarkerFromCoords.lng]);
+			const ptTo = routeMap.latLngToContainerPoint([routeMarkerToCoords.lat, routeMarkerToCoords.lng]);
 
-            // Dimensions des photos
-            const pW = 120; // Largeur photo
-            const pH_From = fromBox.offsetHeight || 90;
-            const pH_To = toBox.offsetHeight || 90;
-            const margin = 10;
+			const pW = 120;
+			const pH_From = fromBox.offsetHeight || 90;
+			const pH_To = toBox.offsetHeight || 90;
+			const margin = 10;
 
-            let posFrom = { x: 0, y: 0 };
-            let posTo = { x: 0, y: 0 };
+			// --- GESTION PHOTO "FROM" ---
+			if (fromVisible) {
+				if (!routePhotoOffsets.from) {
+					// Pas d'offset connu : calcul automatique (Slots)
+					let posX = 0, posY = 0;
+					
+					if (routeLayoutMode === 'horizontal') {
+						const zoneY = h * 0.50; 
+						const zoneH = h - zoneY;
+						const slotLeftX = w * 0.25 - pW / 2;
+						const slotRightX = w * 0.75 - pW / 2;
+						const slotY = zoneY + (zoneH - pH_From) / 2;
+						
+						if (!toVisible) posX = (w - pW) / 2;
+						else posX = (ptFrom.x <= ptTo.x) ? slotLeftX : slotRightX;
+						posY = slotY;
+					} else {
+						const zoneX = w * 0.50;
+						const zoneW = w - zoneX;
+						const slotX = zoneX + (zoneW - pW) / 2;
+						const slotTopY = h * 0.25 - pH_From / 2;
+						const slotBottomY = h * 0.75 - pH_From / 2;
+						
+						if (!toVisible) posY = (h - pH_From) / 2;
+						else posY = (ptFrom.y <= ptTo.y) ? slotTopY : slotBottomY;
+						posX = slotX;
+					}
+					
+					// Clamp (rester dans l'écran)
+					const finalX = Math.max(margin, Math.min(posX, w - pW - margin));
+					const finalY = Math.max(margin, Math.min(posY, h - pH_From - margin));
+					
+					fromBox.style.left = finalX + 'px';
+					fromBox.style.top = finalY + 'px';
+					
+					// SAUVEGARDE OFFSET
+					routePhotoOffsets.from = { x: finalX - ptFrom.x, y: finalY - ptFrom.y };
+				} else {
+					// Offset connu : on suit le marqueur
+					fromBox.style.left = (ptFrom.x + routePhotoOffsets.from.x) + 'px';
+					fromBox.style.top = (ptFrom.y + routePhotoOffsets.from.y) + 'px';
+				}
+				
+				// Dessin connecteur
+				connFrom.setAttribute('x1', ptFrom.x);
+				connFrom.setAttribute('y1', ptFrom.y);
+				connFrom.setAttribute('x2', parseFloat(fromBox.style.left) + pW/2);
+				connFrom.setAttribute('y2', parseFloat(fromBox.style.top) + pH_From/2);
+			}
 
-            // --- LOGIQUE DE PLACEMENT INTELLIGENT ---
+			// --- GESTION PHOTO "TO" ---
+			if (toVisible) {
+				if (!routePhotoOffsets.to) {
+					// Pas d'offset connu : calcul automatique (Slots)
+					let posX = 0, posY = 0;
+					
+					if (routeLayoutMode === 'horizontal') {
+						const zoneY = h * 0.50; 
+						const zoneH = h - zoneY;
+						const slotLeftX = w * 0.25 - pW / 2;
+						const slotRightX = w * 0.75 - pW / 2;
+						const slotY = zoneY + (zoneH - pH_To) / 2;
+						
+						if (!fromVisible) posX = (w - pW) / 2;
+						else posX = (ptTo.x < ptFrom.x) ? slotLeftX : slotRightX;
+						posY = slotY;
+					} else {
+						const zoneX = w * 0.50;
+						const zoneW = w - zoneX;
+						const slotX = zoneX + (zoneW - pW) / 2;
+						const slotTopY = h * 0.25 - pH_To / 2;
+						const slotBottomY = h * 0.75 - pH_To / 2;
+						
+						if (!fromVisible) posY = (h - pH_To) / 2;
+						else posY = (ptTo.y < ptFrom.y) ? slotTopY : slotBottomY;
+						posX = slotX;
+					}
 
-            if (routeLayoutMode === 'horizontal') {
-                // === MODE HORIZONTAL ===
-                // Carte en HAUT, Zone vide en BAS.
-                // On répartit les photos sur la largeur de la zone basse.
-                
-                const zoneY = h * 0.50; // Début de la zone vide (milieu écran)
-                const zoneH = h - zoneY;
-                
-                // On définit deux "Slots" (emplacements) en bas : Gauche et Droite
-                const slotLeftX = w * 0.25 - pW / 2; // Centré sur le quart gauche
-                const slotRightX = w * 0.75 - pW / 2; // Centré sur le quart droit
-                const slotY_From = zoneY + (zoneH - pH_From) / 2;
-                const slotY_To = zoneY + (zoneH - pH_To) / 2;
+					const finalX = Math.max(margin, Math.min(posX, w - pW - margin));
+					const finalY = Math.max(margin, Math.min(posY, h - pH_To - margin));
+					
+					toBox.style.left = finalX + 'px';
+					toBox.style.top = finalY + 'px';
+					
+					// SAUVEGARDE OFFSET
+					routePhotoOffsets.to = { x: finalX - ptTo.x, y: finalY - ptTo.y };
+				} else {
+					// Offset connu : on suit le marqueur
+					toBox.style.left = (ptTo.x + routePhotoOffsets.to.x) + 'px';
+					toBox.style.top = (ptTo.y + routePhotoOffsets.to.y) + 'px';
+				}
 
-                // ANTI-CROISEMENT :
-                // Si le marqueur "From" est visuellement à gauche du marqueur "To",
-                // alors la photo "From" va dans le slot Gauche.
-                if (ptFrom.x <= ptTo.x) {
-                    posFrom = { x: slotLeftX, y: slotY_From };
-                    posTo = { x: slotRightX, y: slotY_To };
-                } else {
-                    // Sinon on inverse les slots
-                    posFrom = { x: slotRightX, y: slotY_From };
-                    posTo = { x: slotLeftX, y: slotY_To };
-                }
-
-                // Ajustement si une seule photo
-                if (fromVisible && !toVisible) posFrom.x = (w - pW) / 2; 
-                if (!fromVisible && toVisible) posTo.x = (w - pW) / 2;
-
-            } else {
-                // === MODE VERTICAL ===
-                // Carte à GAUCHE, Zone vide à DROITE.
-                // On répartit les photos sur la hauteur de la zone droite.
-
-                const zoneX = w * 0.50; // Début de la zone vide (milieu vertical)
-                const zoneW = w - zoneX;
-
-                // On définit deux Slots à droite : Haut et Bas
-                const slotTopY = h * 0.25 - pH_From / 2; // Quart haut
-                const slotBottomY = h * 0.75 - pH_To / 2; // Quart bas
-                const slotX = zoneX + (zoneW - pW) / 2; // Centré horizontalement dans la zone droite
-
-                // ANTI-CROISEMENT :
-                // Si le marqueur "From" est visuellement plus haut (y plus petit) que "To",
-                // alors la photo "From" va dans le slot Haut.
-                if (ptFrom.y <= ptTo.y) {
-                    posFrom = { x: slotX, y: slotTopY };
-                    posTo = { x: slotX, y: slotBottomY };
-                } else {
-                    // Sinon on inverse
-                    posFrom = { x: slotX, y: slotBottomY };
-                    posTo = { x: slotX, y: slotTopY };
-                }
-
-                // Ajustement si une seule photo
-                if (fromVisible && !toVisible) posFrom.y = (h - pH_From) / 2;
-                if (!fromVisible && toVisible) posTo.y = (h - pH_To) / 2;
-            }
-
-            // --- APPLICATION DES POSITIONS ---
-
-            // Limites de sécurité pour ne pas sortir de l'écran
-            const clamp = (val, max, size) => Math.max(margin, Math.min(val, max - size - margin));
-            
-            if (fromVisible) {
-                const finalX = clamp(posFrom.x, w, pW);
-                const finalY = clamp(posFrom.y, h, pH_From);
-                
-                fromBox.style.left = finalX + 'px';
-                fromBox.style.top = finalY + 'px';
-                
-                connFrom.setAttribute('x1', ptFrom.x);
-                connFrom.setAttribute('y1', ptFrom.y);
-                connFrom.setAttribute('x2', finalX + pW/2);
-                connFrom.setAttribute('y2', finalY + pH_From/2);
-            }
-
-            if (toVisible) {
-                const finalX = clamp(posTo.x, w, pW);
-                const finalY = clamp(posTo.y, h, pH_To);
-                
-                toBox.style.left = finalX + 'px';
-                toBox.style.top = finalY + 'px';
-                
-                connTo.setAttribute('x1', ptTo.x);
-                connTo.setAttribute('y1', ptTo.y);
-                connTo.setAttribute('x2', finalX + pW/2);
-                connTo.setAttribute('y2', finalY + pH_To/2);
-            }
-        }
+				connTo.setAttribute('x1', ptTo.x);
+				connTo.setAttribute('y1', ptTo.y);
+				connTo.setAttribute('x2', parseFloat(toBox.style.left) + pW/2);
+				connTo.setAttribute('y2', parseFloat(toBox.style.top) + pH_To/2);
+			}
+		}
 
 		// ===== OVERVIEW MAP =====
 		function renderOverview() {
@@ -1954,52 +2156,84 @@
             }
         }
 
-        function renderMap(poiIndex) {
-            const poi = pois[poiIndex];
-            document.getElementById('map-num').textContent = poiIndex + 1;
-            document.getElementById('map-title').textContent = poi.title;
-            const parentBadge = document.getElementById('map-parent-badge');
-            const parent = getParentPoi(poi);
-            parentBadge.textContent = parent?.title || '';
-            parentBadge.style.display = parent ? '' : 'none';
+		function renderMap(poiIndex) {
+			const poi = pois[poiIndex];
+			document.getElementById('map-num').textContent = poiIndex + 1;
+			document.getElementById('map-title').textContent = poi.title;
+			const parentBadge = document.getElementById('map-parent-badge');
+			const parent = getParentPoi(poi);
+			parentBadge.textContent = parent?.title || '';
+			parentBadge.style.display = parent ? '' : 'none';
 
-            const photoBox = document.getElementById('map-photo-box');
-            const photoImg = document.getElementById('map-photo');
-            const photoLabel = document.getElementById('map-photo-label');
-            photoBox.classList.remove('visible');
-            mapMarkerCoords = null;
-            const coords = getEffectiveCoords(poi);
-            if (coords) mapMarkerCoords = coords;
+			const photoBox = document.getElementById('map-photo-box');
+			const photoImg = document.getElementById('map-photo');
+			const photoLabel = document.getElementById('map-photo-label');
+			photoBox.classList.remove('visible');
+			
+			// Réinitialisation de l'offset pour le nouveau POI
+			mapPhotoOffset = null; 
+			
+			mapMarkerCoords = null;
+			const coords = getEffectiveCoords(poi);
+			if (coords) mapMarkerCoords = coords;
 
-            if (poi.photo) {
-                photoImg.src = CONFIG.imagesPath + poi.photo;
-                photoLabel.textContent = poi.title;
-                photoImg.onload = () => { photoBox.classList.add('visible'); setTimeout(updateMapPhotoPosition, 100); };
-                photoImg.onerror = () => photoBox.classList.remove('visible');
-            }
+			if (poi.photo) {
+				photoImg.src = CONFIG.imagesPath + poi.photo;
+				photoLabel.textContent = poi.title;
+				photoImg.onload = () => { 
+					photoBox.classList.add('visible'); 
+					setTimeout(updateMapPhotoPosition, 100); 
+				};
+				photoImg.onerror = () => photoBox.classList.remove('visible');
+			}
 
-            document.getElementById('map-photo-btn').onclick = (e) => {
-                // stopPropagation est géré dans goToPoiDetails ou ici
-                e.stopPropagation(); 
-                goToPoiDetails(poiIndex);
-            };
+			document.getElementById('map-photo-btn').onclick = (e) => {
+				e.stopPropagation(); 
+				goToPoiDetails(poiIndex);
+			};
 
-            setTimeout(() => {
-                if (map) { map.off('move', updateMapPhotoPosition); map.off('zoom', updateMapPhotoPosition); map.remove(); map = null; }
-                if (!coords) return;
-                map = L.map('the-map').setView([coords.lat, coords.lng], 16);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OSM' }).addTo(map);
-                L.marker([coords.lat, coords.lng], {
-                    icon: L.divIcon({ className: '', html: `<div class="poi-marker current">${poiIndex + 1}</div>`, iconSize: [40, 40], iconAnchor: [20, 20] })
-                }).addTo(map);
+			setTimeout(() => {
+				if (map) { map.remove(); map = null; }
+				if (!coords) return;
+				
+				map = L.map('the-map').setView([coords.lat, coords.lng], 16);
+				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OSM' }).addTo(map);
+				
+				L.marker([coords.lat, coords.lng], {
+					icon: L.divIcon({ className: '', html: `<div class="poi-marker current">${poiIndex + 1}</div>`, iconSize: [40, 40], iconAnchor: [20, 20] })
+				}).addTo(map);
+				
 				userMarkerMap = null;
 				updateUserMarkers();
-                map.on('move', updateMapConnectorOnly);
-                map.on('zoom', updateMapConnectorOnly);
-                setTimeout(updateMapPhotoPosition, 200);
-				initPhotoDrag('map-photo-box', updateMapConnectorOnly);
-            }, 50);
-        }
+				
+				// On écoute les mouvements de la carte
+				map.on('move', updateMapPhotoPosition);
+				map.on('zoom', updateMapPhotoPosition);
+				
+				// Initialisation du drag de la photo
+				// On passe une fonction qui met à jour le connecteur ET l'offset mémorisé
+				initPhotoDrag('map-photo-box', () => {
+					updateMapConnectorOnly();
+					updateMapOffsetFromDOM(); 
+				});
+
+				// Premier positionnement
+				setTimeout(updateMapPhotoPosition, 200);
+			}, 50);
+		}
+
+		// Fonction utilitaire pour sauvegarder la position lors du drag manuel
+		function updateMapOffsetFromDOM() {
+			if (!map || !mapMarkerCoords) return;
+			const box = document.getElementById('map-photo-box');
+			const point = map.latLngToContainerPoint([mapMarkerCoords.lat, mapMarkerCoords.lng]);
+			// On calcule le décalage : PositionBoite - PositionMarqueur
+			mapPhotoOffset = {
+				x: parseFloat(box.style.left) - point.x,
+				y: parseFloat(box.style.top) - point.y
+			};
+		}
+
 
         // ===== CARTO VIEWER avec zoom/pan style Leaflet =====
         
@@ -2419,6 +2653,7 @@
                 coordsEl.innerHTML = '';
             }
             document.getElementById('details-desc').innerHTML = processDescriptionHtml(poi.descHtml);
+			initQuiz();
 			// Scroll vers le haut après affichage
 			setTimeout(() => {
 				const detailsContent = document.querySelector('.details-content');
@@ -2427,143 +2662,134 @@
         }
 
 		function renderRoute(fromIndex, toIndex, distance) {
-            const fromPoi = pois[fromIndex];
-            const toPoi = pois[toIndex];
-            document.getElementById('route-subtitle').textContent = `${fromPoi.title} → ${toPoi.title}`;
-            const distanceEl = document.getElementById('route-distance');
-            if (distance > 0) { distanceEl.textContent = '📍 ' + formatDistance(distance); distanceEl.style.display = 'block'; }
-            else { distanceEl.style.display = 'none'; }
+			const fromPoi = pois[fromIndex];
+			const toPoi = pois[toIndex];
+			document.getElementById('route-subtitle').textContent = `${fromPoi.title} → ${toPoi.title}`;
+			const distanceEl = document.getElementById('route-distance');
+			if (distance > 0) { distanceEl.textContent = '📍 ' + formatDistance(distance); distanceEl.style.display = 'block'; }
+			else { distanceEl.style.display = 'none'; }
 
-            const fromPhotoBox = document.getElementById('route-photo-from');
-            const toPhotoBox = document.getElementById('route-photo-to');
-            fromPhotoBox.classList.remove('visible');
-            toPhotoBox.classList.remove('visible');
-            routeMarkerFromCoords = null;
-            routeMarkerToCoords = null;
+			const fromPhotoBox = document.getElementById('route-photo-from');
+			const toPhotoBox = document.getElementById('route-photo-to');
+			fromPhotoBox.classList.remove('visible');
+			toPhotoBox.classList.remove('visible');
+			
+			// Réinitialisation des offsets pour ce nouveau trajet
+			routePhotoOffsets = { from: null, to: null };
 
-            const fromCoords = getEffectiveCoords(fromPoi);
-            const toCoords = getEffectiveCoords(toPoi);
-            if (fromCoords) routeMarkerFromCoords = fromCoords;
-            if (toCoords) routeMarkerToCoords = toCoords;
+			routeMarkerFromCoords = null;
+			routeMarkerToCoords = null;
+			const fromCoords = getEffectiveCoords(fromPoi);
+			const toCoords = getEffectiveCoords(toPoi);
+			if (fromCoords) routeMarkerFromCoords = fromCoords;
+			if (toCoords) routeMarkerToCoords = toCoords;
 
-            document.getElementById('route-photo-from-btn').onclick = (e) => {
-                e.stopPropagation(); // Important pour ne pas déclencher le drag
-                goToPoiDetails(fromIndex);
-            };
-            
-            document.getElementById('route-photo-to-btn').onclick = (e) => {
-                e.stopPropagation();
-                goToPoiDetails(toIndex);
-            };
+			document.getElementById('route-photo-from-btn').onclick = (e) => { e.stopPropagation(); goToPoiDetails(fromIndex); };
+			document.getElementById('route-photo-to-btn').onclick = (e) => { e.stopPropagation(); goToPoiDetails(toIndex); };
 
-            // Chargement des images
-            if (fromPoi.photo) {
-                const img = document.getElementById('route-photo-from-img');
-                img.src = CONFIG.imagesPath + fromPoi.photo;
-                document.getElementById('route-photo-from-label').textContent = fromPoi.title;
-                img.onload = () => { fromPhotoBox.classList.add('visible'); setTimeout(updateRoutePhotosPosition, 100); };
-                img.onerror = () => fromPhotoBox.classList.remove('visible');
-            }
-            if (toPoi.photo) {
-                const img = document.getElementById('route-photo-to-img');
-                img.src = CONFIG.imagesPath + toPoi.photo;
-                document.getElementById('route-photo-to-label').textContent = toPoi.title;
-                img.onload = () => { toPhotoBox.classList.add('visible'); setTimeout(updateRoutePhotosPosition, 100); };
-                img.onerror = () => toPhotoBox.classList.remove('visible');
-            }
+			if (fromPoi.photo) {
+				const img = document.getElementById('route-photo-from-img');
+				img.src = CONFIG.imagesPath + fromPoi.photo;
+				document.getElementById('route-photo-from-label').textContent = fromPoi.title;
+				img.onload = () => { fromPhotoBox.classList.add('visible'); setTimeout(updateRoutePhotosPosition, 100); };
+				img.onerror = () => fromPhotoBox.classList.remove('visible');
+			}
+			if (toPoi.photo) {
+				const img = document.getElementById('route-photo-to-img');
+				img.src = CONFIG.imagesPath + toPoi.photo;
+				document.getElementById('route-photo-to-label').textContent = toPoi.title;
+				img.onload = () => { toPhotoBox.classList.add('visible'); setTimeout(updateRoutePhotosPosition, 100); };
+				img.onerror = () => toPhotoBox.classList.remove('visible');
+			}
 
-            // Récupération du chemin
-            let path = null;
-            const segment = route?.segments?.find(s => s.index === fromIndex);
-            if (segment?.path?.length >= 2) path = segment.path;
-            else path = route?.segmentPaths?.[fromIndex.toString()];
+			let path = null;
+			const segment = route?.segments?.find(s => s.index === fromIndex);
+			if (segment?.path?.length >= 2) path = segment.path;
+			else path = route?.segmentPaths?.[fromIndex.toString()];
 
-            setTimeout(() => {
-                if (routeMap) { routeMap.off('move', updateRoutePhotosPosition); routeMap.off('zoom', updateRoutePhotosPosition); routeMap.remove(); routeMap = null; }
-                
-                let fullPath = [];
-                if (path?.length >= 2) {
-                    fullPath = [...path];
-                    if (fromCoords && getDistanceBetweenPoints(fromCoords.lat, fromCoords.lng, fullPath[0][0], fullPath[0][1]) > 5)
-                        fullPath.unshift([fromCoords.lat, fromCoords.lng]);
-                    if (toCoords && getDistanceBetweenPoints(toCoords.lat, toCoords.lng, fullPath[fullPath.length-1][0], fullPath[fullPath.length-1][1]) > 5)
-                        fullPath.push([toCoords.lat, toCoords.lng]);
-                } else if (fromCoords && toCoords) {
-                    fullPath = [[fromCoords.lat, fromCoords.lng], [toCoords.lat, toCoords.lng]];
-                }
-                
-                if (fullPath.length < 2) return;
+			setTimeout(() => {
+				if (routeMap) { routeMap.remove(); routeMap = null; }
+				
+				let fullPath = [];
+				if (path?.length >= 2) {
+					fullPath = [...path];
+					if (fromCoords && getDistanceBetweenPoints(fromCoords.lat, fromCoords.lng, fullPath[0][0], fullPath[0][1]) > 5)
+						fullPath.unshift([fromCoords.lat, fromCoords.lng]);
+					if (toCoords && getDistanceBetweenPoints(toCoords.lat, toCoords.lng, fullPath[fullPath.length-1][0], fullPath[fullPath.length-1][1]) > 5)
+						fullPath.push([toCoords.lat, toCoords.lng]);
+				} else if (fromCoords && toCoords) {
+					fullPath = [[fromCoords.lat, fromCoords.lng], [toCoords.lat, toCoords.lng]];
+				}
+				
+				if (fullPath.length < 2) return;
 
-                // Initialisation de la carte
-                routeMap = L.map('route-map', { zoomControl: false });
-                L.control.zoom({ position: 'topright' }).addTo(routeMap);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OSM' }).addTo(routeMap);
-                
-                const line = L.polyline(fullPath, { color: '#3b82f6', weight: 5, opacity: 0.9 }).addTo(routeMap);
-                const bounds = line.getBounds();
+				routeMap = L.map('route-map', { zoomControl: false });
+				L.control.zoom({ position: 'topright' }).addTo(routeMap);
+				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OSM' }).addTo(routeMap);
+				
+				const line = L.polyline(fullPath, { color: '#3b82f6', weight: 5, opacity: 0.9 }).addTo(routeMap);
+				const bounds = line.getBounds();
 
-                if (fromCoords) L.marker([fromCoords.lat, fromCoords.lng], { icon: L.divIcon({ className: '', html: `<div class="poi-marker">${fromIndex + 1}</div>`, iconSize: [40, 40], iconAnchor: [20, 20] }) }).addTo(routeMap);
-                if (toCoords) L.marker([toCoords.lat, toCoords.lng], { icon: L.divIcon({ className: '', html: `<div class="poi-marker current">${toIndex + 1}</div>`, iconSize: [40, 40], iconAnchor: [20, 20] }) }).addTo(routeMap);
-                
-                // --- LOGIQUE DE DÉTECTION DE FORME ET CADRAGE ---
-                const container = document.getElementById('route-map-container');
-                const w = container.offsetWidth;
-                const h = container.offsetHeight;
+				if (fromCoords) L.marker([fromCoords.lat, fromCoords.lng], { icon: L.divIcon({ className: '', html: `<div class="poi-marker">${fromIndex + 1}</div>`, iconSize: [40, 40], iconAnchor: [20, 20] }) }).addTo(routeMap);
+				if (toCoords) L.marker([toCoords.lat, toCoords.lng], { icon: L.divIcon({ className: '', html: `<div class="poi-marker current">${toIndex + 1}</div>`, iconSize: [40, 40], iconAnchor: [20, 20] }) }).addTo(routeMap);
+				
+				// Layout logic
+				const container = document.getElementById('route-map-container');
+				const w = container.offsetWidth;
+				const h = container.offsetHeight;
+				const north = bounds.getNorth();
+				const south = bounds.getSouth();
+				const east = bounds.getEast();
+				const west = bounds.getWest();
+				const centerLatRad = (north + south) / 2 * (Math.PI / 180);
+				const latHeight = Math.abs(north - south);
+				const lngWidth = Math.abs(east - west) * Math.cos(centerLatRad);
+				const isRouteHorizontal = lngWidth >= latHeight;
+				let paddingOptions = {};
 
-                // Calcul de l'étendue géographique
-                const north = bounds.getNorth();
-                const south = bounds.getSouth();
-                const east = bounds.getEast();
-                const west = bounds.getWest();
-                
-                // Correction simple de la longitude selon la latitude moyenne (facteur de rétrécissement)
-                const centerLatRad = (north + south) / 2 * (Math.PI / 180);
-                const latHeight = Math.abs(north - south);
-                const lngWidth = Math.abs(east - west) * Math.cos(centerLatRad);
+				if (isRouteHorizontal) {
+					routeLayoutMode = 'horizontal';
+					paddingOptions = { paddingTopLeft: [20, 20], paddingBottomRight: [20, h * 0.55] };
+				} else {
+					routeLayoutMode = 'vertical';
+					paddingOptions = { paddingTopLeft: [20, 20], paddingBottomRight: [w * 0.50, 20] };
+				}
 
-                // Détermination du mode : est-ce plus "Large" ou plus "Haut" ?
-                const routeRatio = lngWidth / (latHeight || 0.00001); // Évite div par 0
-                
-                // Seuil : Si ratio > 1.2 -> Horizontal, Si < 0.8 -> Vertical. Entre les deux, on décide selon l'écran.
-                // Ici on simplifie : si c'est plus large que haut, c'est horizontal.
-                const isRouteHorizontal = lngWidth >= latHeight;
-                
-                let paddingOptions = {};
-
-                if (isRouteHorizontal) {
-                    // PARCOURS HORIZONTAL (Est-Ouest)
-                    // Stratégie : Carte en haut, Photos en bas.
-                    routeLayoutMode = 'horizontal';
-                    // On demande à la carte de fitBounds en laissant 50% d'espace en bas
-                    paddingOptions = { 
-                        paddingTopLeft: [20, 20],
-                        paddingBottomRight: [20, h * 0.55] // 55% réservé en bas
-                    };
-                } else {
-                    // PARCOURS VERTICAL (Nord-Sud)
-                    // Stratégie : Carte à gauche, Photos à droite.
-                    routeLayoutMode = 'vertical';
-                    // On demande à la carte de fitBounds en laissant 50% d'espace à droite
-                    paddingOptions = { 
-                        paddingTopLeft: [20, 20],
-                        paddingBottomRight: [w * 0.50, 20] // 50% réservé à droite
-                    };
-                }
-
-                routeMap.fitBounds(bounds, paddingOptions);
-                // ------------------------------------------------
-
+				routeMap.fitBounds(bounds, paddingOptions);
 				userMarkerRoute = null;
 				updateUserMarkers();
-                
-                routeMap.on('move', updateRoutePhotosPosition);
-                routeMap.on('zoom', updateRoutePhotosPosition);
-                
-                setTimeout(updateRoutePhotosPosition, 200);
-				initPhotoDrag('route-photo-from', updateRouteConnectorsOnly);
-				initPhotoDrag('route-photo-to', updateRouteConnectorsOnly);
-            }, 50);
-        }
+				
+				routeMap.on('move', updateRoutePhotosPosition);
+				routeMap.on('zoom', updateRoutePhotosPosition);
+				
+				// Initialisation Drag des deux photos avec mise à jour des offsets
+				initPhotoDrag('route-photo-from', () => { 
+					updateRouteConnectorsOnly();
+					updateRouteOffsetFromDOM('from'); 
+				});
+				initPhotoDrag('route-photo-to', () => { 
+					updateRouteConnectorsOnly();
+					updateRouteOffsetFromDOM('to'); 
+				});
+
+				setTimeout(updateRoutePhotosPosition, 200);
+			}, 50);
+		}
+
+		function updateRouteOffsetFromDOM(type) {
+			if (!routeMap) return;
+			const id = type === 'from' ? 'route-photo-from' : 'route-photo-to';
+			const coords = type === 'from' ? routeMarkerFromCoords : routeMarkerToCoords;
+			if (!coords) return;
+
+			const box = document.getElementById(id);
+			const point = routeMap.latLngToContainerPoint([coords.lat, coords.lng]);
+			
+			routePhotoOffsets[type] = {
+				x: parseFloat(box.style.left) - point.x,
+				y: parseFloat(box.style.top) - point.y
+			};
+		}
 
         function getDistanceBetweenPoints(lat1, lng1, lat2, lng2) {
             const R = 6371000;
