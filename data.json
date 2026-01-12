@@ -1,0 +1,709 @@
+{
+  "meta": {
+    "type": "poi_manager_global_export",
+    "date": "2026-01-12T10:27:17.480Z"
+  },
+  "poisExport": {
+    "pois": [
+      {
+        "id": "poi_1767461646419_7r83j0",
+        "title": "Mairie",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.801727096276004,
+        "lng": 2.13036060333252,
+        "x": null,
+        "y": null,
+        "photo": "Hotel_de_ville_de_Versailles_par_Nicolas_Borel.jpg",
+        "descHtml": "<div><b><br></b></div><div><b><div class=\"audio-container\" data-audio-name=\"Mairie.mp3\"><audio controls=\"\" src=\"\"></audio></div><br></b></div><b><div><b><br></b></div>Une longue histoire</b><div><br></div><div>Avant de devenir le bâtiment actuel, cette bâtisse a connu de nombreux propriétaires :</div><div><br></div><div><ul><li>- <b>Bernardin Gigault de Bellefonds</b>, maréchal de France (1630-1694), qui fait bâtir une belle demeure, la première à cet emplacement</li></ul></div><div><br></div><div>- le<b> chevalier de Lorraine</b> l'achète ensuite</div><div><br></div><div>- puis Louis XIV l'acquiert en 1680 pour&nbsp;&nbsp;<b>Louis de Bourbon</b>, comte de Vermandois, son fils légitimé, qui meurt trois ans plus tard. La propriété revient alors à sa sœur,<b> la princesse de Conti,</b> qui en fait un lieu de fêtes prisé de toute la cour</div><div><br></div><div>- Ensuite, Louis XV l'acquiert en 1723&nbsp;pour y loger Louis IV Henri de Bourbon-Condé, duc de Bourbon, Grand Maître de sa Maison</div><div><br></div><div>-&nbsp;l’hôtel accueille provisoirement dès le<b> 29 janvier 1790 la municipalité</b> de Versailles</div><div><br></div><div>-&nbsp;En 1859, la ville devient officiellement propriétaire de l'hôtel</div><div><br></div><div><b>Vidéo Youtube</b></div><div><br></div><div>\n        <div class=\"video-container\">\n          <iframe src=\"https://www.youtube.com/embed/yCDi-iZTgnY?rel=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\"></iframe>\n        </div><p><br></p><br></div><div><br></div><div><br></div><div><br></div><div>L’hôtel est reconstruit par le Versaillais<b> Henri Legrand</b> qui remporte le concours lancé en 1897. Les travaux commencent en mars 1898 et l'hôtel de ville est inauguré le 18 novembre 1900.</div><div><br></div><div>L'ancien bâtiment a été conservé (aile occidentale) mais entièrement transformé.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"versailles-heure-bleue-horloge-mairie.jpg\"><img src=\"\" style=\"width: 100%;\"><figcaption>Façade ouest, emplacement du bâtiment historique</figcaption></figure>A cet époque, un campanile dominait la bâtiment. Il a été dépose en 1945, jugé trop haut</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"Hotel de Ville - Campanile.png\"><img src=\"\" style=\"width: 100%;\"><figcaption>Avec son campanile ...</figcaption></figure><br></div><div>Aujourd'hui, l’hôtel de ville est formé de deux parties distinctes :&nbsp;</div><div><br></div><div>- la première, le long de la rue du Général-de-Gaulle, regardant le château, est un bâtiment peu élevé précédé d’un large escalier, premier hôtel de ville installé en 1790 dans l’ancien hôtel de Conti ;&nbsp;</div><div><br></div><div>- la seconde, qui regarde l’avenue de Paris, est un imposant bâtiment néo-Louis XIII[5] dû à Henri Legrand.</div><div><br></div><div><b>Quizz</b></div><div><br></div><div><div class=\"quiz-container\"><div class=\"quiz-question\">Qui est l'architecte qui a reconstruit le bâtiment avec la forme que nous lui connaissons aujourd'hui ?</div><div class=\"quiz-options\"><button class=\"quiz-btn\" data-correct=\"false\">Pierre Petit</button><button class=\"quiz-btn\" data-correct=\"true\">Henri Legrand</button><button class=\"quiz-btn\" data-correct=\"false\">Amonbofils</button></div><div class=\"quiz-explanation hidden\">C'est bien Pierre Legrand qui est un architecte versaillais</div></div></div><div><br></div><div><br></div><div><br></div><div><div class=\"desc-frame\" style=\"background-color: rgb(51, 65, 85);\">Informations non fiables utilisées à des fins de démonstration. Pour l'application en production, les informations seront vérifiées par les experts.</div><p><br></p></div><div><br></div><div><br></div><div><br></div>"
+      },
+      {
+        "id": "poi_1767461690147_19kxaw",
+        "title": "Hôtel du département et préfecture",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.8020168312828,
+        "lng": 2.132187187671662,
+        "x": null,
+        "y": null,
+        "photo": "prefecture.jpg",
+        "descHtml": "<div>L'hôtel de préfecture des Yvelines est un bâtiment en pierre de taille. Il est, depuis 1968, année de création du département, le siège de la préfecture et du conseil départemental des Yvelines.</div><div><br></div><div>L’hôtel de la Préfecture de Versailles a été construit de 1863 à 1866 à l'emplacement de l'ancien chenil du roi, par l’architecte versaillais Amédée Manuel sur une commande du préfet Édouard Charton. Il fut inauguré le 19 juin 1867.</div><div><br></div><div><b>A noter :</b></div><div><br></div><div>Le fronton triangulaire qui couronne l'avant-corps central du bâtiment est orné d'un bas-relief dû au sculpteur Georges Clère, qui représente l'Oise et la Seine personnifiées.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"prefecture-fronton.jpg\"><img src=\"\" style=\"width: 100%;\"><figcaption>Remarquer le fronton et ses deux figures</figcaption></figure><br></div><div><br></div><div><br></div><div><br></div><div><br></div>"
+      },
+      {
+        "id": "poi_1767461750899_ifxn8m",
+        "title": "Hotel de madame du Barry",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.80114143778251,
+        "lng": 2.135177850723267,
+        "x": null,
+        "y": null,
+        "photo": "hotel_du_barry.jpg",
+        "descHtml": "<div>En 1772, la comtesse du Barry, dernière favorite de Louis XV, fait l’acquisition de ce domaine qu’elle destine à l’installation de son personnel. Elle confie la réalisation de somptueuses écuries à l’un des plus grands architectes de son temps, Claude-Nicolas Ledoux, figure majeure de l’architecture néo-classique.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"hotel_madame_du_barry.jpg\"><img src=\"\" style=\"width: 100%;\"><figcaption>Vue du jardin</figcaption></figure><br></div><div><br></div><div>Mais la disparition de Louis XV en 1774 bouleverse son destin. En 1775, Madame du Barry cède la propriété au comte de Provence, frère du nouveau roi Louis XVI. Ce dernier fait poursuivre les aménagements par Jean-François Chalgrin, futur architecte de l’Arc de Triomphe.</div><div><br></div><div>Le pavillon est acquis en 1937 par la Chambre de Commerce et d’Industrie, qui y établit ses bureaux tout en préservant les décors raffinés et les œuvres d’époque qui rappellent la présence de Madame du Barry.</div>"
+      },
+      {
+        "id": "poi_1767461801795_djy1ts",
+        "title": "Hotel des menus plaisirs",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.80087113155596,
+        "lng": 2.1339681744575505,
+        "x": null,
+        "y": null,
+        "photo": "Hotel menu plaisirs - portail.jpg",
+        "descHtml": "Il est resté célèbre dans l'histoire de France pour avoir accueilli les États généraux de 1789, les derniers que connut l'Ancien Régime.<div><br></div><div><b>Un peu d'histoire</b></div><div><br></div><div>Cet hôtel fut élevé par Louis XV vers 1745, afin d’abriter les ateliers de décors et le matériel des jeux liés aux réjouissances du roi et de la cour appelés « Menus-Plaisirs ». On y entreposera notamment des accessoires de sport (notamment pour le jeu de paume), des décors de théâtre, des instruments de musique, etc</div><div><br></div><div><div>On y construisit une salle provisoire qui accueillit une assemblée des notables en 1787, puis fin 1788. Celle-ci sera considérablement agrandie par Pierre-Adrien Pâris, alors architecte du roi, afin qu'elle puisse accueillir les 1 200 députés convoqués pour les États généraux dont la séance inaugurale s’ouvre le 5 mai 1789 en présence du roi. Cette immense salle « démontable » à la décoration luxueuse occupera alors la totalité de la superficie de la cour haute.</div></div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"Salle etats généraux 1789.jpg\"><img src=\"\" style=\"width: 100%;\"><figcaption>Grande salle pour les états généraux de 1789</figcaption></figure><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"Hotel_Menus_Plaisirs_Versailles_(cour_haute,_salle_etats_generaux).jpg\"><img src=\"\" style=\"width: 100%;\"><figcaption>Cour haute avec l'emplacement de la salle des États généraux.</figcaption></figure><br></div><div><div>Depuis 1996, une partie de l’hôtel abrite désormais le Centre de musique baroque de Versailles.</div><div><br></div><div>C'est dans la cour haute servant à la récréation des élèves du Centre de musique baroque de Versailles que subsistent les restes de la salle des États généraux.&nbsp;</div><div><br></div><div>Les pavés du sol exposent le tracé de la salle, avec la tribune royale au fond, les tribunes pour la noblesse et le clergé sur les côtés, la grande tribune pour le tiers-État en face.</div></div><div><br></div>"
+      },
+      {
+        "id": "poi_1767461852891_idoshh",
+        "title": "Domaine de Madame Elisabeth",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.798853505731465,
+        "lng": 2.1435570716857915,
+        "x": null,
+        "y": null,
+        "photo": "vue-sur-le-domaine-de-madame-elisabeth.jpg",
+        "descHtml": "<div><div>Le domaine de Madame Élisabeth ou domaine de Montreuil a appartenu à la famille de Rohan-Guéméné ; le roi Louis XVI l'achète en 1783 pour sa sœur Élisabeth de France, dite Madame Élisabeth.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"Vigée_Le_Brun_-_Élisabeth_of_France,_Versailles.jpg\"><img src=\"\" style=\"width: 100%;\"><figcaption>Portrait d'Elisabeth de France, par Élisabeth Louise Vigée Le Brun, circa 1782</figcaption></figure><br></div><div><br></div><div>Depuis 1997, il est la propriété du conseil départemental des Yvelines.</div></div><div><br></div><a href=\"https://youtu.be/xKxWIl2eMzM\" target=\"_blank\">Vidéo sur l'histoire du domaine</a><div><br></div><div><br></div>"
+      },
+      {
+        "id": "poi_1767461902795_dhxina",
+        "title": "Octrois",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.79852664977627,
+        "lng": 2.1531406044960026,
+        "x": null,
+        "y": null,
+        "photo": "Octroi-avenue-paris-versailles.jpg",
+        "descHtml": "Les pavillons d'octroi ont été construits en 1824 sur ordre du marquis de Londe, maire du IIIe arrondissement de Seine-et-Oise.&nbsp;<div><br></div><div>Les bâtiments ainsi que les grilles de fer qui s'étendaient sur toute la largeur de l'avenue étaient affectés au service de l'octroi, une taxe perçue par la municipalité sur les denrées transportées entrant dans la ville.&nbsp;</div><div><br></div><div>Le pavillon de gauche en venant de Paris contenait le bureau de perception tandis que le pavillon de droite servait au logement des préposés.<br><div><br></div><div><div>La municipalité envisage un temps de détruire les pavillons d'octroi car ils constituaient un obstacle visuel contribuant à la dangerosité du carrefour de l'avenue de Paris avec l'avenue de Porchefontaine et la rue Vauban. Mais les services des Monuments historiques, qui les ont inscrits à l'inventaire en août 1959 s'y opposent.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"Octroi-avenue-paris-versailles.jpg\"><img src=\"\" style=\"width:100%;\"><figcaption></figcaption></figure><br></div><div><br></div><div>Finalement le carrefour est réaménagé en 1993 de façon à le rendre plus sûr tandis que les pavillons sont mis à la disposition de deux associations : l'Association culture et Bibliothèque pour tous et l'Association nationale des femmes de militaires.</div></div><div><br></div><div><br></div><div><br></div><div><br></div></div>"
+      },
+      {
+        "id": "poi_1767461981762_bsfobj",
+        "title": "Maison des musiciens italiens",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.80141792597776,
+        "lng": 2.146518230438233,
+        "x": null,
+        "y": null,
+        "photo": "maison_des_musiciens_italiens.jpg",
+        "descHtml": "<div>Cette maison est généralement considérée comme celle où habitèrent cinq chanteurs italiens arrivés à Versailles sous le règne de Louis XIV pour faire partie de la Musique de la Chapelle royale.</div><div><br></div><div>Mais si leur présence à cet endroit n’est pas remise en question, il est plus probable que le pavillon principal soit dû à la propriétaire suivante, la comtesse d’Argenson, et à l’architecte J. Hardouin-Mansart de Sagonne, petit-fils de l’architecte du Roi Soleil.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"maison_des_musiciens_italiens.jpg\"><img src=\"\" style=\"width:100%;\"><figcaption></figcaption></figure><br></div><div><br></div><div>Plus tard occupé par Madame de Marsan, gouvernante des Enfants de France sous Louis XV, le domaine fut cédé par elle au botaniste L.-G. Le Monnier qui créa une pépinière derrière la maison.&nbsp;</div><div><br></div><div>C’est à cette époque que furent élevés des bâtiments plus sobres à gauche du gracieux pavillon rocaille. Le tout a été classé Monument historique en 1950 et restauré par les Compagnons du Tour de France qui y ont établi leur siège et leur musée.</div>"
+      },
+      {
+        "id": "poi_1767462034043_i6rtt6",
+        "title": "Eglise St Symphorien",
+        "tags": [],
+        "isCarto": true,
+        "cartoImage": "Plan Eglise.jpg",
+        "parentCartoId": null,
+        "lat": 48.804412380988346,
+        "lng": 2.146188318729401,
+        "x": null,
+        "y": null,
+        "photo": "St Symphorien.jpg",
+        "descHtml": "<div>L'église Saint-Symphorien de Versailles se trouve dans le quartier de Montreuil.</div><div>Construite en 1771, elle prend la forme d'un temple antique, avec de très belles colonnes en façade et à l'intérieur.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"St Symphorien.jpg\"><img src=\"\" style=\"width:100%;\"><figcaption></figcaption></figure><br></div><div><br></div><div>Dépouillée à la Révolution de 1789, elle a été réaménagée au XIXe siècle avec un superbe chœur à la voûte peinte, un grand-orgue et de nombreux tableaux.</div><div><br></div><div><div>L'église a été construite par l'architecte de Louis XV, Louis-François Trouard, au moment où la ville de Versailles s'est étendue vers le village jusque là agricole de Montreuil.</div><div><br></div><div>De forme rappelant un temple antique, elle sera consacrée en 1771 à saint Symphorien, jeune chrétien martyrisé en l'an 180.</div></div><div><br></div><div><div>La façade est ornée de quatre colonnes délimitant un porche, surmontées d'un fronton.</div><div><br></div><div>Ressource :&nbsp;<a href=\"https://www.wivisites.com/monument_details?site=13960fe4-f8cd-4368-ba1b-4948d435854c\" target=\"_blank\">lien</a></div><div><br></div></div>"
+      },
+      {
+        "id": "poi_1767462065923_ursnpb",
+        "title": "Place Alexandre 1er",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.8055244354175,
+        "lng": 2.1412396430969243,
+        "x": null,
+        "y": null,
+        "photo": "place Alexandre premier.jpg",
+        "descHtml": "Place de Versailles"
+      },
+      {
+        "id": "poi_1767462126419_7okqd3",
+        "title": "Chapelle du lycée Hoche",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": null,
+        "lat": 48.80665589678306,
+        "lng": 2.1369400620460515,
+        "x": null,
+        "y": null,
+        "photo": "Chapelle Hoche.jpg",
+        "descHtml": "<div>Située au coeur de l'ancien couvent fondé par l'épouse du roi Louis XV, cette chapelle est un joyau de l'architecture néoclassique.</div><div><br></div><div>Le lycée Hoche abrita d'abord une maison d'éducation pour jeunes filles. Les élèves étaient plus de 500 quand les religieuses furent expulsées en 1792.</div><div><br></div><div>Sa chapelle est un joyau de l'art néoclassique, qui vient de faire l'objet d'une restauration complète, achevée en 2011.</div><div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"Chapelle Hoche.jpg\"><img src=\"\" style=\"width:100%;\"><figcaption></figcaption></figure><br></div><div><br></div><div>Napoléon 1er en fit un lycée de garçons, qui devient lycée Hoche en 1888.</div>"
+      },
+      {
+        "id": "poi_1767468048518_65k60l",
+        "title": "Eglise St Symphorien - La nef",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": "poi_1767462034043_i6rtt6",
+        "lat": null,
+        "lng": null,
+        "x": 0.47619047619047616,
+        "y": 0.20793448151071486,
+        "photo": "St Symphorien - Nef.jpg",
+        "descHtml": "<br><div>En entrant, on se trouve dans une longue nef bordée de majestueuses colonnes, avec une voûte à caissons, menant au chœur, dans une abside.</div><div><br></div><div><div>Avancez jusqu'au milieu de l'allée centrale pour voir de chaque côté une chapelle latérale.</div><div><br></div><div>À gauche, la chapelle de la Vierge Marie avec une statue du XIXe siècle, représentant Marie qui tient l'enfant Jésus debout sur une sphère figurant le monde.</div></div><div><br></div><div>À droite, la chapelle de saint Fiacre (mort en 670) avec la statue de ce saint irlandais, qui émigra en France à l'époque mérovingienne. Il fut ermite dans la forêt de Brie, accueilli par saint Faron, évêque de Meaux. Moine défricheur, son ermitage devint un hospice pour les pauvres qu'il nourrissait des fruits et légumes qu'il cultivait pour eux. Pour cette raison, il est devenu le patron des maraÎchers et des jardiniers. Le quartier Montreuil en comptait beaucoup au 19e siècle.</div><div><br></div><div><br></div>"
+      },
+      {
+        "id": "poi_1767468254754_rgxwqk",
+        "title": "Eglise St Symphorien - Le choeur",
+        "tags": [],
+        "isCarto": false,
+        "cartoImage": null,
+        "parentCartoId": "poi_1767462034043_i6rtt6",
+        "lat": null,
+        "lng": null,
+        "x": 0.45938375350140054,
+        "y": 0.5634009107460218,
+        "photo": "St Symphorien - Choeur.jpg",
+        "descHtml": "L'autel en marbre blanc évoque cette offrande avec plusieurs figures de l'Ancien Testament.&nbsp;Jésus est assis au milieu, tenant sa croix, avec, à ses côtés, Aaron, Abel, Abraham et Melkisédek.<div><br></div><div><figure class=\"desc-figure align-center\" data-img-name=\"St Symphorien - Choeur - détail.jpg\"><img src=\"\" style=\"width:60%;\"><figcaption></figcaption></figure><br></div>"
+      }
+    ],
+    "images": []
+  },
+  "routesExport": [
+    {
+      "id": "route_1767468887942_xanwxa",
+      "name": "Versailles - Parcours de Montreuil",
+      "poiIds": [
+        "poi_1767461646419_7r83j0",
+        "poi_1767461690147_19kxaw",
+        "poi_1767461750899_ifxn8m",
+        "poi_1767461801795_djy1ts",
+        "poi_1767461852891_idoshh",
+        "poi_1767461902795_dhxina",
+        "poi_1767461981762_bsfobj",
+        "poi_1767462034043_i6rtt6",
+        "poi_1767468048518_65k60l",
+        "poi_1767468254754_rgxwqk",
+        "poi_1767462065923_ursnpb",
+        "poi_1767462126419_7okqd3"
+      ],
+      "segmentPaths": {
+        "0": [
+          [
+            48.80237841489418,
+            2.1307736635208134
+          ],
+          [
+            48.80237841489418,
+            2.1307736635208134
+          ]
+        ],
+        "1": [
+          [
+            48.80181466661891,
+            2.132635116577149
+          ],
+          [
+            48.80181466661891,
+            2.132635116577149
+          ]
+        ],
+        "2": [
+          [
+            48.80137132120622,
+            2.134260535240174
+          ],
+          [
+            48.80137132120622,
+            2.134260535240174
+          ]
+        ],
+        "3": [
+          [
+            48.801285130583075,
+            2.1343195438385014
+          ],
+          [
+            48.801285130583075,
+            2.1343195438385014
+          ]
+        ],
+        "4": [
+          [
+            48.79834080565503,
+            2.1452522277832036
+          ],
+          [
+            48.79834080565503,
+            2.1452522277832036
+          ]
+        ],
+        "5": [
+          [
+            48.79845315973212,
+            2.15033769607544
+          ],
+          [
+            48.79845315973212,
+            2.15033769607544
+          ],
+          [
+            48.80133828383129,
+            2.1472048759460454
+          ],
+          [
+            48.80133828383129,
+            2.1472048759460454
+          ]
+        ],
+        "6": [
+          [
+            48.80144958481813,
+            2.1470975875854497
+          ],
+          [
+            48.80144958481813,
+            2.1470975875854497
+          ],
+          [
+            48.80280722984133,
+            2.1456599235534672
+          ],
+          [
+            48.80280722984133,
+            2.1456599235534672
+          ]
+        ],
+        "7": [],
+        "9": [
+          [
+            48.8046302877954,
+            2.1461212635040288
+          ],
+          [
+            48.8046302877954,
+            2.1461212635040288
+          ],
+          [
+            48.8054787664293,
+            2.1416580677032475
+          ],
+          [
+            48.8054787664293,
+            2.1416580677032475
+          ]
+        ],
+        "10": [
+          [
+            48.80542150263934,
+            2.1398878097534184
+          ],
+          [
+            48.80542150263934,
+            2.1398878097534184
+          ],
+          [
+            48.805739678789415,
+            2.1398663520812993
+          ],
+          [
+            48.805739678789415,
+            2.1398663520812993
+          ],
+          [
+            48.80552049099127,
+            2.1367120742797856
+          ],
+          [
+            48.80552049099127,
+            2.1367120742797856
+          ]
+        ]
+      },
+      "segments": [
+        {
+          "index": 0,
+          "startPoiId": "poi_1767461646419_7r83j0",
+          "startPoiTitle": "Mairie",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.801727096276004,
+            "lng": 2.13036060333252,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767461690147_19kxaw",
+          "endPoiTitle": "Hôtel du département et préfecture",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.8020168312828,
+            "lng": 2.132187187671662,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.80237841489418,
+              2.1307736635208134
+            ],
+            [
+              48.80237841489418,
+              2.1307736635208134
+            ]
+          ],
+          "distance": 189.54734705085207
+        },
+        {
+          "index": 1,
+          "startPoiId": "poi_1767461690147_19kxaw",
+          "startPoiTitle": "Hôtel du département et préfecture",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.8020168312828,
+            "lng": 2.132187187671662,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767461750899_ifxn8m",
+          "endPoiTitle": "Hotel de madame du Barry",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.80114143778251,
+            "lng": 2.135177850723267,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.80181466661891,
+              2.132635116577149
+            ],
+            [
+              48.80181466661891,
+              2.132635116577149
+            ]
+          ],
+          "distance": 240.48360674095784
+        },
+        {
+          "index": 2,
+          "startPoiId": "poi_1767461750899_ifxn8m",
+          "startPoiTitle": "Hotel de madame du Barry",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.80114143778251,
+            "lng": 2.135177850723267,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767461801795_djy1ts",
+          "endPoiTitle": "Hotel des menus plaisirs",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.80087113155596,
+            "lng": 2.1339681744575505,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.80137132120622,
+              2.134260535240174
+            ],
+            [
+              48.80137132120622,
+              2.134260535240174
+            ]
+          ],
+          "distance": 131.48175640678352
+        },
+        {
+          "index": 3,
+          "startPoiId": "poi_1767461801795_djy1ts",
+          "startPoiTitle": "Hotel des menus plaisirs",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.80087113155596,
+            "lng": 2.1339681744575505,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767461852891_idoshh",
+          "endPoiTitle": "Domaine de Madame Elisabeth",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.798853505731465,
+            "lng": 2.1435570716857915,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.801285130583075,
+              2.1343195438385014
+            ],
+            [
+              48.801285130583075,
+              2.1343195438385014
+            ]
+          ],
+          "distance": 781.3490347868387
+        },
+        {
+          "index": 4,
+          "startPoiId": "poi_1767461852891_idoshh",
+          "startPoiTitle": "Domaine de Madame Elisabeth",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.798853505731465,
+            "lng": 2.1435570716857915,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767461902795_dhxina",
+          "endPoiTitle": "Octrois",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.79852664977627,
+            "lng": 2.1531406044960026,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.79834080565503,
+              2.1452522277832036
+            ],
+            [
+              48.79834080565503,
+              2.1452522277832036
+            ]
+          ],
+          "distance": 714.7796363601573
+        },
+        {
+          "index": 5,
+          "startPoiId": "poi_1767461902795_dhxina",
+          "startPoiTitle": "Octrois",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.79852664977627,
+            "lng": 2.1531406044960026,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767461981762_bsfobj",
+          "endPoiTitle": "Maison des musiciens italiens",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.80141792597776,
+            "lng": 2.146518230438233,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.79845315973212,
+              2.15033769607544
+            ],
+            [
+              48.79845315973212,
+              2.15033769607544
+            ],
+            [
+              48.80133828383129,
+              2.1472048759460454
+            ],
+            [
+              48.80133828383129,
+              2.1472048759460454
+            ]
+          ],
+          "distance": 650.9505363694893
+        },
+        {
+          "index": 6,
+          "startPoiId": "poi_1767461981762_bsfobj",
+          "startPoiTitle": "Maison des musiciens italiens",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.80141792597776,
+            "lng": 2.146518230438233,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767462034043_i6rtt6",
+          "endPoiTitle": "Eglise St Symphorien",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.804412380988346,
+            "lng": 2.146188318729401,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.80144958481813,
+              2.1470975875854497
+            ],
+            [
+              48.80144958481813,
+              2.1470975875854497
+            ],
+            [
+              48.80280722984133,
+              2.1456599235534672
+            ],
+            [
+              48.80280722984133,
+              2.1456599235534672
+            ]
+          ],
+          "distance": 409.26654644175863
+        },
+        {
+          "index": 7,
+          "startPoiId": "poi_1767462034043_i6rtt6",
+          "startPoiTitle": "Eglise St Symphorien",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.804412380988346,
+            "lng": 2.146188318729401,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767468048518_65k60l",
+          "endPoiTitle": "Eglise St Symphorien - La nef",
+          "endPoiParentId": "poi_1767462034043_i6rtt6",
+          "endPoiParentTitle": "Eglise St Symphorien",
+          "endPosition": {
+            "lat": 48.804412380988346,
+            "lng": 2.146188318729401,
+            "isInherited": true
+          },
+          "path": [],
+          "distance": 0
+        },
+        {
+          "index": 8,
+          "startPoiId": "poi_1767468048518_65k60l",
+          "startPoiTitle": "Eglise St Symphorien - La nef",
+          "startPoiParentId": "poi_1767462034043_i6rtt6",
+          "startPoiParentTitle": "Eglise St Symphorien",
+          "startPosition": {
+            "lat": 48.804412380988346,
+            "lng": 2.146188318729401,
+            "isInherited": true
+          },
+          "endPoiId": "poi_1767468254754_rgxwqk",
+          "endPoiTitle": "Eglise St Symphorien - Le choeur",
+          "endPoiParentId": "poi_1767462034043_i6rtt6",
+          "endPoiParentTitle": "Eglise St Symphorien",
+          "endPosition": {
+            "lat": 48.804412380988346,
+            "lng": 2.146188318729401,
+            "isInherited": true
+          },
+          "path": [],
+          "distance": 0
+        },
+        {
+          "index": 9,
+          "startPoiId": "poi_1767468254754_rgxwqk",
+          "startPoiTitle": "Eglise St Symphorien - Le choeur",
+          "startPoiParentId": "poi_1767462034043_i6rtt6",
+          "startPoiParentTitle": "Eglise St Symphorien",
+          "startPosition": {
+            "lat": 48.804412380988346,
+            "lng": 2.146188318729401,
+            "isInherited": true
+          },
+          "endPoiId": "poi_1767462065923_ursnpb",
+          "endPoiTitle": "Place Alexandre 1er",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.8055244354175,
+            "lng": 2.1412396430969243,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.8046302877954,
+              2.1461212635040288
+            ],
+            [
+              48.8046302877954,
+              2.1461212635040288
+            ],
+            [
+              48.8054787664293,
+              2.1416580677032475
+            ],
+            [
+              48.8054787664293,
+              2.1416580677032475
+            ]
+          ],
+          "distance": 395.99233132330755
+        },
+        {
+          "index": 10,
+          "startPoiId": "poi_1767462065923_ursnpb",
+          "startPoiTitle": "Place Alexandre 1er",
+          "startPoiParentId": null,
+          "startPoiParentTitle": null,
+          "startPosition": {
+            "lat": 48.8055244354175,
+            "lng": 2.1412396430969243,
+            "isInherited": false
+          },
+          "endPoiId": "poi_1767462126419_7okqd3",
+          "endPoiTitle": "Chapelle du lycée Hoche",
+          "endPoiParentId": null,
+          "endPoiParentTitle": null,
+          "endPosition": {
+            "lat": 48.80665589678306,
+            "lng": 2.1369400620460515,
+            "isInherited": false
+          },
+          "path": [
+            [
+              48.80542150263934,
+              2.1398878097534184
+            ],
+            [
+              48.80542150263934,
+              2.1398878097534184
+            ],
+            [
+              48.805739678789415,
+              2.1398663520812993
+            ],
+            [
+              48.805739678789415,
+              2.1398663520812993
+            ],
+            [
+              48.80552049099127,
+              2.1367120742797856
+            ],
+            [
+              48.80552049099127,
+              2.1367120742797856
+            ]
+          ],
+          "distance": 494.7107075412957
+        }
+      ],
+      "totalDistance": 3117.8584641568373
+    }
+  ]
+}
